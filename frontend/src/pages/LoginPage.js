@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { ToastContainer, toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
 
 function LoginPage() {
@@ -11,14 +12,34 @@ function LoginPage() {
   } = useForm();
   const nav = useNavigate();
 
+  const showToast = (title) => {
+    toast(title, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  };
+
   const onSubmit = async (data) => {
     console.log(data);
     // console.log(data.username + " " + data.password)
+    await new Promise((resolve) => setTimeout(resolve, 2000));
 
-    const req = await axios.post("http://localhost:8080/login", {
-      username: data.username,
-      password: data.password,
-    });
+    const req = await axios.post(
+      "http://localhost:8080/login",
+      {
+        username: data.username,
+        password: data.password,
+      },
+      {
+        withCredentials: true,
+      }
+    );
     if (req) {
       console.log("Successfull");
       nav("/homepage");
@@ -27,9 +48,9 @@ function LoginPage() {
     }
   };
   return (
-    <div className="relative flex justify-center items-center h-screen w-screen bg-slate-950 overflow-hidden">
+    <div className="relative flex justify-center items-center h-screen bg-slate-800 w-screen overflow-hidden">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="w-[400px] h-auto rounded-3xl bg-white p-5">
+        <div className="w-[400px] h-auto rounded-3xl bg-white p-5 ">
           <h1 className="font-bold text-2xl text-center opacity-90 mb-5">
             LOGIN HERE
           </h1>
@@ -46,7 +67,7 @@ function LoginPage() {
                 {...register("username", { required: true })}
               />
               {errors.password && (
-                <span className="text-red-900">Username is requried</span>
+                <span style={{ color: "red" }} className="mt-0">Username is required</span>
               )}
             </div>
             <div className="flex flex-col w-[85%] gap-2">
@@ -61,7 +82,7 @@ function LoginPage() {
                 {...register("password", { required: true })}
               />
               {errors.username && (
-                <span className="text-red-900">password is requried</span>
+                <span style={{ color: "red" }} className="mt-0">password is required</span>
               )}
             </div>
           </div>
@@ -76,6 +97,18 @@ function LoginPage() {
             </button>
           </div>
         </div>
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
       </form>
     </div>
   );
