@@ -48,68 +48,89 @@ function LoginPage() {
     }
   };
   return (
-    <div className="relative flex justify-center items-center h-screen bg-slate-800 w-screen overflow-hidden">
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="w-[400px] h-auto rounded-3xl bg-white p-5 ">
-          <h1 className="font-bold text-2xl text-center opacity-90 mb-5">
-            LOGIN HERE
-          </h1>
-          <div className="flex flex-col justify-start items-center gap-6">
-            <div className="flex flex-col w-[85%] gap-2">
-              <label htmlFor="username" className="font-semibold text-lg">
-                Username
-              </label>
-              <input
-                type="text"
-                className="w-full bg-gray-200 outline-none p-3 rounded-xl"
-                id="username"
-                placeholder="Enter your Username here"
-                {...register("username", { required: true })}
-              />
-              {errors.password && (
-                <span style={{ color: "red" }} className="mt-0">Username is required</span>
-              )}
-            </div>
-            <div className="flex flex-col w-[85%] gap-2">
-              <label htmlFor="password" className="font-semibold text-lg">
-                Password
-              </label>
-              <input
-                type="password"
-                className="w-full bg-gray-200 outline-none p-3 rounded-xl"
-                id="password"
-                placeholder="Enter your password"
-                {...register("password", { required: true })}
-              />
-              {errors.username && (
-                <span style={{ color: "red" }} className="mt-0">password is required</span>
-              )}
-            </div>
-          </div>
-
-          <div className="flex flex-row w-full justify-center items-center mt-10">
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="px-12 py-2 rounded-3xl bg-slate-900 text-white font-semibold"
-            >
-              LOGIN
-            </button>
+    <div className="relative flex justify-center items-center h-screen bg-[#ADBADA] w-screen overflow-hidden ">
+      <div className="w-full flex flex-row justify-evenly items-center mx-4">
+        <div className="w-[500px]">
+          <div className="flex flex-col justify-center items-center">
+            <h1 className="font-mono text-9xl">TrendNest</h1>
+            <p className="text-2xl text-center">
+              {" "}
+              Your go-to source for the latest trends in fashion, tech, and
+              lifestyle, delivered stylishly.
+            </p>
           </div>
         </div>
-        <ToastContainer
-          position="top-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="light"
-        />
-      </form>
+        <div>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="flex flex-col justify-center w-[400px] h-auto rounded-xl bg-white p-5 ">
+              <h1 className="font-bold text-2xl text-center opacity-90 mb-5">
+                TrendNest
+              </h1>
+              <div className="flex flex-col justify-start items-center gap-6">
+                <div className="flex flex-col w-[90%]">
+                  <label htmlFor="username" className="font-semibold">
+                    Username
+                  </label>
+                  <input
+                    type="text"
+                    className="w-full bg-[#EEE8F6] outline-none p-3 rounded-xl"
+                    id="username"
+                    placeholder="Enter your Username here"
+                    {...register("username", { required: true })}
+                  />
+                  {errors.password && (
+                    <span style={{ color: "red" }} className="mt-0">
+                      Username is required
+                    </span>
+                  )}
+                </div>
+                <div className="flex flex-col w-[90%]">
+                  <label htmlFor="password" className="font-semibold">
+                    Password
+                  </label>
+                  <input
+                    type="password"
+                    className="w-full bg-[#EEE8F6] outline-none p-3 rounded-xl"
+                    id="password"
+                    placeholder="Enter your password"
+                    {...register("password", { required: true })}
+                  />
+                  {errors.username && (
+                    <span style={{ color: "red" }} className="mt-0">
+                      password is required
+                    </span>
+                  )}
+                </div>
+              </div>
+               <div className="mt-6 flex flex-row justify-center gap-x-2">
+               <button className=" font-semibold hover:text-[#3D52A1]">Forget Password?</button>
+               <button className="font-semibold hover:text-[#3D52A1]">Register Now</button>
+               </div>
+              <div className="flex flex-row w-full justify-center items-center mt-10">
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="px-12 py-2 rounded-lg bg-[#3D52A1] text-white font-semibold"
+                >
+                  LOGIN
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </div>
   );
 }

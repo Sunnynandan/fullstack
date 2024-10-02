@@ -6,13 +6,14 @@ import Error from "../pages/Error";
 // All routes
 export const routes = createBrowserRouter([
     {
-        path: "/",
+        path: "/kf",
         element : <LoginPage/>,
         errorElement : <Error/>
     },
     {
-        path:"/homepage",
-        element :<Homepage/>
+        path:"/",
+        element :<Homepage/>,
+        index : true
     }
 ]);
 

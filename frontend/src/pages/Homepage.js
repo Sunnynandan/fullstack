@@ -22,7 +22,7 @@ function Homepage() {
     <div>
       <Navbar />
       
-      <div className="flex flex-col items-center pt-[5rem]">
+      <div className="flex w-screen h-screen flex-col items-center pt-[5rem] bg-[#D8DEFF]">
         <h1 className="text-center font-bold text-4xl">Welcome to Home Page</h1>
         <button
         className="px-5 py-2 rounded bg-blue-700 text-white"
