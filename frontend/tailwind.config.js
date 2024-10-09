@@ -2,11 +2,14 @@
 module.exports = {
   content: ["./src/**/*.{html,js}"],
   theme: {
-    // colors :{
-    //   primaryColor : "#E7CCCC"
-    // },
-    extend: {},
+    colors: {
+      cream: "#f9f1f0",
+      roseQuartz: "#fadcd9",
+      dustyRose: "#fadcd9",
+      coral: "#f79489",
+      danger: "#f32013",
+    },
   },
+  extend: {},
   plugins: [],
-}
-
+};

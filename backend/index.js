@@ -5,8 +5,9 @@ const bcrypt = require("bcryptjs");
 const app = express();
 const cors = require("cors");
 const PORT = process.env.PORT || 8080;
-const {LoginController} = require("./controller/login")
+const { LoginController } = require("./controller/login");
 const { autherization } = require("./controller/autherize");
+const mongo = require("mongodb");
 
 app.use(express.json());
 app.use(
@@ -17,13 +18,13 @@ app.use(
 );
 
 app.use(cookieParser());
-app.use("/protected",autherization)
+app.use("/protected", autherization);
 
-app.get("/protected/data", (req,res)=>{
-   res.status(200).send({
-    status : true,
-     message : "Data send succesfully"
-   })
+app.get("/protected/data", (req, res) => {
+  res.status(200).send({
+    status: true,
+    message: "Data send succesfully",
+  });
 });
 
 app.post("/login", LoginController);
@@ -40,7 +41,6 @@ app.get("/profile", (req, res) => {
     date: Date.now(), // This returns the current timestamp
   });
 });
-
 
 app.listen(PORT, () => {
   console.log("Listen to PORT 8080");

@@ -1,11 +1,12 @@
 import React from "react";
+import { TfiSearch } from "react-icons/tfi";
 import Navbar from "../components/Navbar";
 import axios from "axios";
+import { motion, Variants } from "framer-motion";
 import { ToastContainer, toast } from "react-toastify";
 
 function Homepage() {
-  const displayToast = (title) =>{
-
+  const displayToast = (title) => {
     toast(title, {
       position: "top-right",
       autoClose: 5000,
@@ -15,37 +16,15 @@ function Homepage() {
       draggable: true,
       progress: undefined,
       theme: "light",
-      });
-  }
+    });
+  };
+
+  const list = Array.from({ length: 100 }, (_, index) => index + 1);
 
   return (
     <div>
       <Navbar />
-      
-      <div className="flex w-screen h-screen flex-col items-center pt-[5rem] bg-[#D8DEFF]">
-        <h1 className="text-center font-bold text-4xl">Welcome to Home Page</h1>
-        <button
-        className="px-5 py-2 rounded bg-blue-700 text-white"
-          onClick={() => {
-            axios
-              .get("http://localhost:8080/protected/data",
-                {
-                    withCredentials: true // This option ensures cookies are sent
-                  }
-              )
-              .then(() => {
-                displayToast("Logged In")
-                console.log("Successfully Data Send")
-              })
-              .catch(() => {
-                console.log("Failed");
-              });
-              
-          }}
-        >
-          Click Me
-        </button>
-      </div>
+      <div className="flex  flex-col items-center pt-[5rem]"></div>
     </div>
   );
 }
