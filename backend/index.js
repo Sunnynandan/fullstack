@@ -7,8 +7,10 @@ const cors = require("cors");
 const PORT = process.env.PORT || 8080;
 const { LoginController } = require("./controller/login");
 const { autherization } = require("./controller/autherize");
-const mongo = require("mongodb");
-
+const mongoose = require("mongoose");
+require('dotenv').config();
+const uri = process.env.uri
+ 
 app.use(express.json());
 app.use(
   cors({
@@ -29,19 +31,11 @@ app.get("/protected/data", (req, res) => {
 
 app.post("/login", LoginController);
 
-app.get("/profile", (req, res) => {
-  const first_name = req.query.firstname;
-  const last_name = req.query.lastname;
+mongoose
+  .connect(uri)
+  .then(() => console.log("Database connected successfully"))
+  .catch(() => console.log("Connection Failed"));
 
-  // Respond with the data, including a properly formatted date
-  res.send({
-    company: "id", // Replace 'id' with the actual company id
-    first: first_name,
-    last: last_name,
-    date: Date.now(), // This returns the current timestamp
-  });
-});
-
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
   console.log("Listen to PORT 8080");
 });
